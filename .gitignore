@@ -41,3 +41,7 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Atmel Studio
+*.cppproj
+Visual Micro/
