@@ -13,14 +13,12 @@ uint8_t CE_PIN   = 5;
 uint8_t IO_PIN   = 6;
 uint8_t SCLK_PIN = 7;
 
-
 char buf[50];
 char day[10];
 
 String comdata = "";
-int numdata[7] ={
-0}
-, j = 0, mark = 0;
+int numdata[7] ={0};
+int j = 0, mark = 0;
 
 DS1302 rtc(CE_PIN, IO_PIN, SCLK_PIN);
 
@@ -49,10 +47,8 @@ void denied();
 int pos = 0;
 const int chipSelect = 4;
 
-//int x;
 boolean acces = false;
-//String data[10];
-String num ;
+String num;
 
 boolean lock = false;
 
@@ -68,45 +64,23 @@ void setup()
 	rtc.write_protect(false);
 	rtc.halt(false);
 	pinMode(10, OUTPUT);
-	
-	// myFile = SD.open("dane.txt", FILE_WRITE);
-	
-	// if (!SD.begin(chipSelect)) {
-	//    Serial.println("Card failed, or not present");
-	//    // don't do anything more:
-	//    return;
-	//  }
-	//myFile = SD.open("abc.txt", FILE_WRITE);
-	//  myFile.close();
 }
 
 void loop()
 {
-	
-	//Read();
-	//if (rfid.isCard())
-
-
 	// Look for new cards
-	if ( ! rfid.PICC_IsNewCardPresent()) {
-		return;
-	}
+	if ( ! rfid.PICC_IsNewCardPresent())
+	return;
 	{
 		if (rfid.PICC_ReadCardSerial())
 		{
-			/* Reading card */
-			//                Serial.println(" ");
-			//                Serial.println("Card found");
-			//                Serial.println("Cardnumber:");
 			for (i = 0; i < 5; i++)
 			{
-
-				//    Serial.print(" ");
 				num += rfid.uid.uidByte[i];
 				num += " ";
 				reading_card[i] = rfid.uid.uidByte[i];
 			}
-			//   Serial.println();
+
 			//verification
 			for (i = 0; i < 5; i++)
 			{
@@ -122,46 +96,31 @@ void loop()
 				allow();
 				
 				save();
-
 			}
-			
-			
 			else
 			{
 				acces = false;
 				save();
-				// denied();
 			}
-			//save();
-
 		}
 	}
 	rfid.PICC_HaltA();
-
-
 }
-
 
 void allow()
 {
-	//Serial.println("Access accept!");
-
-	if(lock == false){
+	if(lock == false)
+	{
 		myservo.write(90);
-
 		lock = true;
 	}
-	else{
-
+	else
+	{
 		myservo.write(180);
 		lock = false;
 	}
 }
-//void denied()
-//{
-//// Serial.println("Access denied!");
-//
-//}
+
 
 
 

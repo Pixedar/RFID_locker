@@ -1,6 +1,5 @@
 String  print_time ()
 {
-
 	Time t = rtc.time();
 
 	memset(day, 0, sizeof(day));
@@ -34,21 +33,11 @@ String  print_time ()
 	String str(buf);
 
 	return str;
-
-	//"ACCES: " + print_time ()
 }
 
 
 void save(){
-
-	// x ++;
-
-
-	//if( lock == false ){
-
-
 	if(acces == true && lock == false ){
-		// delay(2500);
 		myFile = SD.open("danel.txt", FILE_WRITE);
 
 		if(myFile){
@@ -67,43 +56,5 @@ void save(){
 			myFile.close();
 			num = 0;
 		}
-
-
-
 	}
-
-
-	//  }
-
-	//  else{
-	//
-	//    x = 0;
-	//  }
-
-
 }
-
-
-//void Read(){
-//  char debug = Serial.read();
-//
-//  if(debug == 'r'){
-//
-//    Serial.print("Acces list:");
-//    Serial.println(" ");
-//
-//
-//    for(int i = 0; i < 10; i++){
-//      if(data [i] != 0){
-//
-//        Serial.println(data[i]);
-//      }
-//
-//    }
-//
-//  }
-//}
-
-
-
-
