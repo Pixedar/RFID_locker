@@ -45,3 +45,5 @@ Temporary Items
 # Atmel Studio
 *.cppproj
 Visual Micro/
+*.atsuo
+*.atsln
